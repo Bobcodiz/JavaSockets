@@ -3,7 +3,7 @@ import java.net.*;
 import java.util.Scanner;
 
 public class Client {
-    private static final int SERVER_PORT = 8880;
+    private static final int SERVER_PORT = 8080;
 
 
     public static void main(String[] args) {
