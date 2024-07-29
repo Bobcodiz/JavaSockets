@@ -38,7 +38,7 @@ public class ClientHandler extends Thread{
                 if (message.startsWith("@")){
                     int splitIndex = message.indexOf(' ');
                     String target = message.substring(1,splitIndex);
-                    String privateChat = message.substring(splitIndex+1);
+                    String privateChat = message.substring(splitIndex + 1);
                     sendPrivateMessage(target,privateChat);
                 }else {
                     broadcastMessage(message);
@@ -67,9 +67,7 @@ public class ClientHandler extends Thread{
         synchronized (clientHandlers) {
             for (ClientHandler client : clientHandlers) {
                 if (client.clientName.equals(targetName)) {
-                    String address = String.valueOf(reader.read());
-                    client.out.println(address);
-                    client.out.println("(Private) " + clientName + ": " + message);
+                    client.out.println("(Private) " + clientName + ":" + message);
                     break;
                 }
             }
@@ -78,7 +76,7 @@ public class ClientHandler extends Thread{
     private void broadcastMessage(String message) {
         synchronized (clientHandlers) {
             for (ClientHandler client : clientHandlers) {
-                client.out.println(clientName + ": " + message);
+                client.out.println(clientName + ":" + message);
             }
         }
     }
