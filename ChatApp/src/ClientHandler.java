@@ -10,6 +10,7 @@ public class ClientHandler extends Thread{
     private BufferedReader in;
     private InputStreamReader reader;
     private OutputStreamWriter writer;
+
     public ClientHandler(Socket socket, Set<ClientHandler> clientHandlers) throws IOException {
         this.socket = socket;
         this.clientHandlers = clientHandlers;
@@ -34,20 +35,28 @@ public class ClientHandler extends Thread{
             }
 
             String message;
+
+            // Continuously read messages from the client
             while ((message = in.readLine()) != null) {
                 if (message.startsWith("@")){
+
+                    // Handle private messages
                     int splitIndex = message.indexOf(' ');
                     String target = message.substring(1,splitIndex);
                     String privateChat = message.substring(splitIndex + 1);
                     sendPrivateMessage(target,privateChat);
-                }else {
+                }
+                else {
+                    // Broadcast public messages to all clients
                     broadcastMessage(message);
                 }
             }
         } catch (IOException e) {
+            // Handle IO exceptions that may occur during client communication
             throw new RuntimeException(e);
         }
         finally {
+            // Cleanup and notify other clients when a client disconnects
             try {
                 socket.close();
             } catch (IOException e) {
@@ -62,7 +71,7 @@ public class ClientHandler extends Thread{
             }
         }
     }
-
+    // Method to send a private message to a specific client
     private void sendPrivateMessage(String targetName, String message) throws IOException {
         synchronized (clientHandlers) {
             for (ClientHandler client : clientHandlers) {
@@ -73,6 +82,7 @@ public class ClientHandler extends Thread{
             }
         }
     }
+    // Method to broadcast a message to all connected clients
     private void broadcastMessage(String message) {
         synchronized (clientHandlers) {
             for (ClientHandler client : clientHandlers) {
