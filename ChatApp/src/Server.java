@@ -33,9 +33,8 @@ public class Server {
                 for (ClientHandler client : clientHandlers){
                     if(client.getName().equals(clientHandler.getClientName())){
                         clientHandler.getOut().println("Username already exist.");
-                        while (client.getName().equals(clientHandler.getClientName())){
+                        while (client.getName().equals(clientHandler.getClientName()))
                             clientHandler = new ClientHandler(socket, clientHandlers);
-                        }
                     }
                 }
 
@@ -49,7 +48,7 @@ public class Server {
 
         } catch (IOException e) {
             // Handle IO exceptions that may occur during server operation
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
