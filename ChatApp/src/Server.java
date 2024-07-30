@@ -47,7 +47,7 @@ public class Server {
 
         } catch (IOException e) {
             // Handle IO exceptions that may occur during server operation
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
