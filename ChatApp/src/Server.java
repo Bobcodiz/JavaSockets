@@ -23,8 +23,8 @@ public class Server {
 
                 for (ClientHandler client : clientHandlers){
                     if(client.getName().equals(clientHandler.getClientName())){
-                        clientHandler.getOut().println("Username already exist.\nExiting the session.");
-                        return;
+                        clientHandler.getOut().println("Username already exist.");
+
                     }
                 }
 
