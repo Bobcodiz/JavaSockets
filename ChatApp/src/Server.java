@@ -20,6 +20,14 @@ public class Server {
                 Socket socket = serverSocket.accept();
                 System.out.println("Client connected..");
                 ClientHandler clientHandler = new ClientHandler(socket, clientHandlers);
+
+                for (ClientHandler client : clientHandlers){
+                    if(client.getName().equals(clientHandler.getClientName())){
+                        clientHandler.getOut().println("Username already exist.\nExiting the session.");
+                        return;
+                    }
+                }
+
                 clientHandlers.add(clientHandler);
                 new Thread(clientHandler).start();
 

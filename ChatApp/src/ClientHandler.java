@@ -10,22 +10,21 @@ public class ClientHandler extends Thread{
     private BufferedReader in;
     private InputStreamReader reader;
     private OutputStreamWriter writer;
-    public ClientHandler(Socket socket, Set<ClientHandler> clientHandlers) {
+    public ClientHandler(Socket socket, Set<ClientHandler> clientHandlers) throws IOException {
         this.socket = socket;
         this.clientHandlers = clientHandlers;
+
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        out = new PrintWriter(socket.getOutputStream(),true);
+
+        out.println("Enter your name: ");
+        clientName = in.readLine();
     }
 
     @Override
     public void run() {
 
         try {
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new PrintWriter(socket.getOutputStream(),true);
-
-            out.println("Enter your name: ");
-            clientName = in.readLine();
-
-
             synchronized (clientHandlers) {
                 for (ClientHandler clientHandler : clientHandlers) {
                     clientHandler.setName(clientName);
@@ -79,5 +78,58 @@ public class ClientHandler extends Thread{
                 client.out.println(clientName + ":" + message);
             }
         }
+    }
+
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+
+    public Set<ClientHandler> getClientHandlers() {
+        return clientHandlers;
+    }
+
+    public PrintWriter getOut() {
+        return out;
+    }
+
+    public void setOut(PrintWriter out) {
+        this.out = out;
+    }
+
+    public BufferedReader getIn() {
+        return in;
+    }
+
+    public void setIn(BufferedReader in) {
+        this.in = in;
+    }
+
+    public InputStreamReader getReader() {
+        return reader;
+    }
+
+    public void setReader(InputStreamReader reader) {
+        this.reader = reader;
+    }
+
+    public OutputStreamWriter getWriter() {
+        return writer;
+    }
+
+    public void setWriter(OutputStreamWriter writer) {
+        this.writer = writer;
     }
 }
