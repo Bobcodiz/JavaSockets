@@ -7,16 +7,11 @@ import java.util.Set;
 
 public class Server {
 
-
      // The port number on which the server will listen for client connections
      static int SERVER_PORT = 8080;
 
      // A synchronized set to keep track of all connected client handlers
      private static final Set<ClientHandler> clientHandlers = Collections.synchronizedSet(new HashSet<>());
-
-    static int SERVER_PORT = 8080;
-    private static final Set<ClientHandler> clientHandlers = Collections.synchronizedSet(new HashSet<>());
-
 
     public static void main(String[] args) {
         try {
@@ -51,5 +46,4 @@ public class Server {
 
 }
 
-}
 
