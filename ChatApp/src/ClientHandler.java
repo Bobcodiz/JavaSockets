@@ -22,7 +22,7 @@ public class ClientHandler extends Thread{
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(),true);
 
-            out.println("enter your username");
+            out.println("Enter your name: ");
             clientName = in.readLine();
 
 
