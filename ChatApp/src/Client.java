@@ -18,16 +18,7 @@ public class Client {
              BufferedReader serverIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
 
-            Thread serverListener = new Thread(() -> {
-                String serverMessage;
-                try {
-                    while ((serverMessage = serverIn.readLine()) != null) {
-                        System.out.println(serverMessage);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+
             serverListener.start();
 
             String userMessage;
