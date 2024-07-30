@@ -7,18 +7,26 @@ import java.util.Set;
 
 public class Server {
 
+
      // The port number on which the server will listen for client connections
      static int SERVER_PORT = 8080;
 
      // A synchronized set to keep track of all connected client handlers
      private static final Set<ClientHandler> clientHandlers = Collections.synchronizedSet(new HashSet<>());
 
+    static int SERVER_PORT = 8080;
+    private static final Set<ClientHandler> clientHandlers = Collections.synchronizedSet(new HashSet<>());
+
+
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
             System.out.println("Waiting for clients..");
 
+
             // Continuously listen for new client connections
+
+
             while (true) {
                 // Accept a new client connection
                 Socket socket = serverSocket.accept();
@@ -40,4 +48,8 @@ public class Server {
             throw new RuntimeException(e);
         }
     }
+
 }
+
+}
+
