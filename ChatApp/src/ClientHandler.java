@@ -26,13 +26,7 @@ public class ClientHandler extends Thread{
     public void run() {
 
         try {
-
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new PrintWriter(socket.getOutputStream(),true);
-
-            out.println("enter your username");
-            clientName = in.readLine();
-
+            
             synchronized (clientHandlers) {
                 for (ClientHandler clientHandler : clientHandlers) {
                     clientHandler.setName(clientName);
