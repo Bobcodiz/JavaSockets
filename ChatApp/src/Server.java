@@ -13,11 +13,11 @@ public class Server {
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
-            System.out.println("waiting for clients...");
+            System.out.println("Waiting for clients..");
 
             while (true) {
                 Socket socket = serverSocket.accept();
-                System.out.println("client connected");
+                System.out.println("Client connected..");
                 ClientHandler clientHandler = new ClientHandler(socket, clientHandlers);
                 clientHandlers.add(clientHandler);
                 new Thread(clientHandler).start();
