@@ -26,7 +26,7 @@ public class ClientHandler extends Thread{
     public void run() {
 
         try {
-            
+
             synchronized (clientHandlers) {
                 for (ClientHandler clientHandler : clientHandlers) {
                     clientHandler.setName(clientName);
