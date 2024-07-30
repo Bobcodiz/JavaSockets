@@ -25,6 +25,7 @@ public class ClientHandler extends Thread{
             out.println("enter your username");
             clientName = in.readLine();
 
+            
 
             synchronized (clientHandlers) {
                 for (ClientHandler clientHandler : clientHandlers) {
