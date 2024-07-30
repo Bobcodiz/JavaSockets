@@ -30,7 +30,14 @@ public class Server {
                 // Create a new ClientHandler for the connected client
                 ClientHandler clientHandler = new ClientHandler(socket, clientHandlers);
 
-                // Add the new client handler to the set of client handlers
+                for (ClientHandler client : clientHandlers){
+                    if(client.getName().equals(clientHandler.getClientName())){
+                        clientHandler.getOut().println("Username already exist.\nExiting the session.");
+                        return;
+                    }
+                }
+
+                 // Add the new client handler to the set of client handlers
                 clientHandlers.add(clientHandler);
 
                 // Start a new thread to handle the client's communication
