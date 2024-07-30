@@ -33,7 +33,8 @@ public class Server {
                 for (ClientHandler client : clientHandlers){
                     if(client.getName().equals(clientHandler.getClientName())){
                         clientHandler.getOut().println("Username already exist.");
-
+                        while (client.getName().equals(clientHandler.getClientName()))
+                            clientHandler = new ClientHandler(socket, clientHandlers);
                     }
                 }
 
