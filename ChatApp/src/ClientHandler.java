@@ -20,6 +20,7 @@ public class ClientHandler extends Thread{
 
         out.println("Enter your name: ");
         clientName = in.readLine();
+
     }
 
     @Override
