@@ -22,7 +22,7 @@ public class Server {
             // Continuously listen for new client connections
 
 
-            while (true) {
+            while (true){
                 // Accept a new client connection
                 Socket socket = serverSocket.accept();
                 System.out.println("Client connected..");
